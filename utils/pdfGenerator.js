@@ -35,6 +35,9 @@ export const generatePdfBuffer = (data) => {
       { label: "Father Name", value: data.Father },
       { label: "Mother Name", value: data.Mother },
       { label: "Trip Selected", value: data.Trip },
+     { label: "Trip Date", value: data.Date || "N/A" }
+
+
     ];
 
     fields.forEach((field, i) => {
