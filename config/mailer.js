@@ -1,7 +1,18 @@
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
+// import nodemailer from "nodemailer";
+// import dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
+
+// export const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: process.env.SMTP_EMAIL,
+//     pass: process.env.SMTP_PASSWORD
+//   }
+// });
+
 
 export const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -9,6 +20,14 @@ export const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: process.env.SMTP_EMAIL,
-    pass: process.env.SMTP_PASSWORD
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP Error:", error);
+  } else {
+    console.log("SMTP Server is ready to send emails ✅");
   }
 });
