@@ -12,6 +12,11 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.get("/get", (( req, res)=>
+{
+  console.log("hello");
+  
+}))
 app.use("/api", tripRoutes);
 
 // Server
