@@ -1,25 +1,33 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import tripRoutes from "./routes/tripRoutes.js";
-
-dotenv.config();
 
 const app = express();
 
-app.use(cors());
+/* ✅ CORS CONFIG */
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://https://tripfrontend-phi.vercel.app/"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
+
 app.use(express.json());
 
+/* TEST ROUTE */
+app.get("/get", (req, res) => {
+  res.json({ message: "Hello from backend" });
+});
 
-app.use("/get", ((req, res)=>
-{
-  console.log("hello");
-  
-}))
+/* API ROUTES */
 app.use("/api", tripRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
